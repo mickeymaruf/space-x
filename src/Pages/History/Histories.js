@@ -48,6 +48,7 @@ const Histories = () => {
                 }
             </div>
             {
+                // Pagination
                 !searchText
                 && <Pagination
                     itemsPerPage={itemsPerPage}

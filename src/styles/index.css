@@ -12,6 +12,6 @@ body {
 
 #home {
     min-height: calc(100vh - 4.4rem);
-    background-image: url('./assets/mission_feature.jpg');
+    background-image: url('../assets/mission_feature.jpg');
     background-size: cover;
 }

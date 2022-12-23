@@ -47,6 +47,7 @@ const Addresses = () => {
                 }
             </div>
             {
+                // Pagination
                 !searchText
                 && <Pagination
                     itemsPerPage={itemsPerPage}
