@@ -1,13 +1,9 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import Home from './Pages/Home/Home';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/routes';
 
 function App() {
   return (
-    <div className='bg-black'>
-      <Navbar />
-      <Home />
-    </div>
+    <RouterProvider router={router}></RouterProvider>
   );
 }
 

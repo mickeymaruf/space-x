@@ -5,5 +5,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
 
 body {
+    background: #000;
+    color: white;
     font-family: 'Kanit', sans-serif;
+}
+
+#home {
+    min-height: calc(100vh - 4.4rem);
+    background-image: url('./assets/mission_feature.jpg');
+    background-size: cover;
 }
