@@ -7,8 +7,8 @@ const Navbar = () => {
     const location = useLocation();
     return (
         <nav className='w-11/12 mx-auto flex justify-between items-center py-6'>
-            <Link to="/"><img className='w-52' src={spacex} alt="" /></Link>
-            <ul className='flex items-center font-medium uppercase gap-8 text-sm'>
+            <Link to="/"><img className='w-48 md:w-52' src={spacex} alt="" /></Link>
+            <ul className='flex items-center font-medium uppercase gap-5 md:gap-8 text-sm'>
                 <li className={`hover:opacity-50 ${location.pathname === "/" && 'opacity-50'}`}><Link to="/">Home</Link></li>
                 <li className={`hover:opacity-50 ${location.pathname === "/history" && 'opacity-50'}`}><Link to="/history">History</Link></li>
                 <li className={`hover:opacity-50 ${location.pathname === "/address" && 'opacity-50'}`}><Link to="/address">Address</Link></li>
