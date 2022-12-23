@@ -2,7 +2,6 @@ import React from 'react';
 
 const Address = ({ address }) => {
     const { payload_id, payload_type, nationality, customers, manufacturer, orbit, payload_mass_kg, payload_mass_lbs, reused } = address;
-    console.log(address);
     return (
         <div className='border rounded flex flex-col p-5'>
             <div className='flex justify-between'>

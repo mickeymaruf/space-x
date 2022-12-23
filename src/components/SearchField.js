@@ -8,7 +8,7 @@ const SearchField = ({ setSearchText }) => {
     }
     return (
         <form onSubmit={handleSubmit} className='mb-5 flex'>
-            <input onKeyUp={(e) => setSearchText(e.target.value)} type="search" name="search" className='bg-black border outline-none border-white px-2' placeholder='Search by title' />
+            <input onKeyUp={(e) => setSearchText(e.target.value)} type="search" name="search" className='bg-black border outline-none border-white px-2' placeholder='Enter to clear' />
             <button className='bg-white text-black py-2 px-3'>Search</button>
         </form>
     );
