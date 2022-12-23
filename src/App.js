@@ -1,9 +1,11 @@
 import './App.css';
+import Navbar from './components/Navbar';
 import Home from './Pages/Home/Home';
 
 function App() {
   return (
-    <div>
+    <div className='bg-black'>
+      <Navbar />
       <Home />
     </div>
   );

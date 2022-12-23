@@ -1,20 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Histories from '../History/Histories';
 
 const Home = () => {
-    const [histories, setHistories] = useState([]);
-    useState(() => {
-        fetch('https://api.spacexdata.com/v3/history')
-            .then(res => res.json())
-            .then(data => setHistories(data));
-    }, [])
-
     return (
-        <div>
-            {
-                histories.map(history => <div key={history.title}>
-                    {history.title}
-                </div>)
-            }
+        <div className='w-11/12 mx-auto pb-10'>
+            <Histories />
         </div>
     );
 };
