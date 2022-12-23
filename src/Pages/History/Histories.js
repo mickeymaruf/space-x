@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PageSpinner from '../../components/PageSpinner';
 import Pagination from '../../components/Pagination';
 import SearchField from '../../components/SearchField';
+import { getAllData } from '../../services/actions/dataAction';
 import History from './History';
 
 const Histories = () => {
-    const [histories, setHistories] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const { isLoading, data: histories, error } = useSelector(state => state)
     const [searchText, setSearchText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        setLoading(true);
-        fetch('https://api.spacexdata.com/v3/history')
-            .then(res => res.json())
-            .then(data => {
-                setHistories(data)
-                setLoading(false);
-            });
+        dispatch(getAllData('https://api.spacexdata.com/v3/history'));
     }, [])
 
     // Get current items
@@ -26,7 +23,7 @@ const Histories = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = histories.slice(indexOfFirstItem, indexOfLastItem);
 
-    if (loading) {
+    if (isLoading) {
         return <PageSpinner />
     }
 
@@ -35,7 +32,8 @@ const Histories = () => {
             <SearchField setSearchText={setSearchText} />
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
                 {
-                    searchText
+                    histories &&
+                        searchText
                         ? histories.filter(history =>
                             history.title.toLowerCase().includes(searchText.toLowerCase())
                             || history.details.toLowerCase().includes(searchText.toLowerCase())
