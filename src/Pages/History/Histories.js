@@ -8,7 +8,7 @@ import History from './History';
 
 const Histories = () => {
     const { isLoading, histories, error } = useSelector(state => state.history);
-    const [searchText, setSearchText] = useState("");
+    const { searchText } = useSelector(state => state.filter);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
 
@@ -35,7 +35,7 @@ const Histories = () => {
 
     return (
         <section className='w-11/12 mx-auto pb-10 pt-1'>
-            <SearchField setSearchText={setSearchText} />
+            <SearchField />
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
                 {
                     histories &&
