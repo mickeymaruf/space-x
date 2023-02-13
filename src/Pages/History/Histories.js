@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import PageSpinner from '../../components/PageSpinner';
 import Pagination from '../../components/Pagination';
 import SearchField from '../../components/SearchField';
-import { getAllData } from '../../services/actions/dataAction';
+import { getHistoriesData } from '../../features/history/historySlice';
 import History from './History';
 
 const Histories = () => {
-    const { isLoading, data: histories, error } = useSelector(state => state)
+    const { isLoading, histories, error } = useSelector(state => state.history);
     const [searchText, setSearchText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
@@ -15,16 +15,22 @@ const Histories = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllData('https://api.spacexdata.com/v3/history'));
-    }, [])
+        dispatch(getHistoriesData());
+    }, [dispatch])
 
     // Get current items
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = histories.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = histories?.slice(indexOfFirstItem, indexOfLastItem);
 
     if (isLoading) {
         return <PageSpinner />
+    }
+
+    if (error) {
+        return <h1 className='w-11/12 mx-auto mt-10'>
+            <span className='bg-slate-700 p-2'>{error}</span>
+        </h1>
     }
 
     return (

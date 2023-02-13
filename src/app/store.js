@@ -1,7 +1,12 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
-import dataReducer from "../services/reducers/dataReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import addressSlice from "../features/address/addressSlice";
+import historySlice from "../features/history/historySlice";
 
-const store = createStore(dataReducer, applyMiddleware(thunk));
+const store = configureStore({
+    reducer: {
+        history: historySlice,
+        address: addressSlice
+    }
+});
 
 export default store;

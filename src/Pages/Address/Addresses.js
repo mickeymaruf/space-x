@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import PageSpinner from '../../components/PageSpinner';
 import Pagination from '../../components/Pagination';
 import SearchField from '../../components/SearchField';
-import { getAllData } from '../../services/actions/dataAction';
+import { getAddressesData } from '../../features/address/addressSlice';
 import Address from './Address';
 
 const Addresses = () => {
-    const { isLoading, data: addresses, error } = useSelector(state => state)
+    const { isLoading, addresses, error } = useSelector(state => state.address)
     const [searchText, setSearchText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(16);
@@ -15,8 +15,8 @@ const Addresses = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllData('https://api.spacexdata.com/v3/payloads'));
-    }, [])
+        dispatch(getAddressesData());
+    }, [dispatch])
 
     // Get current items
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -25,6 +25,12 @@ const Addresses = () => {
 
     if (isLoading) {
         return <PageSpinner />
+    }
+
+    if (error) {
+        return <h1 className='w-11/12 mx-auto mt-10'>
+            <span className='bg-slate-700 p-2'>{error}</span>
+        </h1>
     }
 
     return (
